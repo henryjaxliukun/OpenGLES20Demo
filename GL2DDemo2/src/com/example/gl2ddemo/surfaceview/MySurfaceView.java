@@ -61,7 +61,7 @@ public class MySurfaceView extends GLSurfaceView
             
             MatrixState.pushMatrix();
             MatrixState.translate(0, -2, 0);
-            background.drawSelf(backgroundTextureId);
+            background.drawSelf();
             MatrixState.popMatrix();
             
             //开启混合
@@ -72,7 +72,7 @@ public class MySurfaceView extends GLSurfaceView
             MatrixState.pushMatrix();
             MatrixState.translate(0, -2, 0);
 
-            originalImage.drawSelf(cloudTextureId);
+            originalImage.drawSelf();
             group.drawSelf(cloudTextureId);
             
             MatrixState.popMatrix();
@@ -100,12 +100,12 @@ public class MySurfaceView extends GLSurfaceView
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
             MatrixState.setInitStack();
             
-            originalImage=new Cloud(0, 0, new TextureRect(MySurfaceView.this,5,5,20));
-            background=new Image_2D(0, -50, 0, new TextureRect(MySurfaceView.this, 200, 100,-100));
-            group=new CloudGroup(getCloudsList());
-
             cloudTextureId=initTexture(R.drawable.cloud);
             backgroundTextureId=initTexture(R.drawable.bg);
+            
+            originalImage=new Cloud(0, 0, new TextureRect(MySurfaceView.this,5,5,20),cloudTextureId);
+            background=new Image_2D(0, -50, 0, new TextureRect(MySurfaceView.this, 200, 100,-100),backgroundTextureId);
+            group=new CloudGroup(getCloudsList(cloudTextureId));
             
             moveThread=new MoveCloudThread();
             moveThread.start();
@@ -161,14 +161,14 @@ public class MySurfaceView extends GLSurfaceView
         return textureId;
 	}
 
-	public List<Cloud> getCloudsList() {
+	public List<Cloud> getCloudsList(int texId) {
 		// TODO Auto-generated method stub
 		TextureRect rect=new TextureRect(this, 5, 5, 15);
 		List<Cloud> list=new ArrayList<Cloud>();
 		//随机生成速度和位置
 		Random random=new Random();
 		for(int i=0;i<10;i++){
-			Cloud c=new Cloud(random.nextInt()%Cloud.border, i, rect);
+			Cloud c=new Cloud(random.nextInt()%Cloud.border, i, rect,texId);
 			int s;
 			do{
 				s=Math.abs(random.nextInt()%3);

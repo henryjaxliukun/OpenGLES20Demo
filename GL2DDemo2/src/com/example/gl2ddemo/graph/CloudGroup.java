@@ -54,7 +54,7 @@ public class CloudGroup {
     {//绘制列表中的每个树木
     	for(int i=0;i<imageList.size();i++)
     	{
-    		imageList.get(i).drawSelf(texId);
+    		imageList.get(i).drawSelf();
     	}
     }
     

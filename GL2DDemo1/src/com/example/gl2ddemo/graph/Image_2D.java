@@ -11,15 +11,17 @@ public class Image_2D implements Comparable<Image_2D>{
 	public float z;
 	public float yAngle;
 	TextureRect rect;
+	public int texId;
 
-	public Image_2D(float x, float z, float yAngle, TextureRect rect) {
+	public Image_2D(float x, float z, float yAngle, TextureRect rect,int texId) {
 		this.x = x;
 		this.z = z;
 		this.yAngle = yAngle;
 		this.rect = rect;
+		this.texId=texId;
 	}
 
-	public void drawSelf(int texId) {
+	public void drawSelf() {
 		MatrixState.pushMatrix();
 		MatrixState.translate(x, 0, z);
 		MatrixState.rotate(yAngle, 0, 1, 0);
@@ -53,6 +55,4 @@ public class Image_2D implements Comparable<Image_2D>{
 
 		return ((disA - disB) == 0) ? 0 : ((disA - disB) > 0) ? -1 : 1;
 	}
-
-	
 }

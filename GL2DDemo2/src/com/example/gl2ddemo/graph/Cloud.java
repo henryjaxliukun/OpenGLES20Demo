@@ -2,8 +2,8 @@ package com.example.gl2ddemo.graph;
 
 public class Cloud extends Image_2D implements IMovable{
 
-	public Cloud(float x, float z, TextureRect rect) {
-		super(x, z, 0, rect);
+	public Cloud(float x, float z, TextureRect rect,int texId) {
+		super(x, z, 0, rect ,texId);
 		// TODO Auto-generated constructor stub
 	}
 

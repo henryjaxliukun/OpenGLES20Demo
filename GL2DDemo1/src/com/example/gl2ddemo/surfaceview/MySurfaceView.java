@@ -139,7 +139,7 @@ public class MySurfaceView extends GLSurfaceView
             MatrixState.pushMatrix();
             MatrixState.translate(0, -2, 0);
 
-            group.drawSelf(treeTextureId);
+            group.drawSelf();
             
             MatrixState.popMatrix();
             //关闭混合
@@ -165,11 +165,9 @@ public class MySurfaceView extends GLSurfaceView
             //打开深度检测
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
             MatrixState.setInitStack();
-            
-            group=new TreeGroup(MySurfaceView.this);
 
             treeTextureId=initTexture(R.drawable.tree);
-            Collections.sort(mRender.group.trees);
+            
             desert=new Desert
                     (
                     	MySurfaceView.this,
@@ -182,6 +180,10 @@ public class MySurfaceView extends GLSurfaceView
         	            20
                     ); 
             desertId=initTexture(R.drawable.desert); 
+
+            group=new TreeGroup(MySurfaceView.this,treeTextureId);
+            
+            Collections.sort(mRender.group.trees);
 		}
     }
 	

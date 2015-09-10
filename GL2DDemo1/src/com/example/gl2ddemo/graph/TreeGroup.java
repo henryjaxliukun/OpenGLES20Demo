@@ -17,18 +17,18 @@ public class TreeGroup
 	TextureRect rect;
 	public List<Image_2D> trees=new ArrayList<Image_2D>();
 	
-	public TreeGroup(MySurfaceView mv)
+	public TreeGroup(MySurfaceView mv,int texId)
 	{
 		rect=new TextureRect(mv, 3, 5, 0);
-		trees.add(new Image_2D(0,0,0,rect));
-		trees.add(new Image_2D(8*UNIT_SIZE,0,0,rect));
-		trees.add(new Image_2D(5.7f*UNIT_SIZE,5.7f*UNIT_SIZE,0,rect));
-		trees.add(new Image_2D(0,-8*UNIT_SIZE,0,rect));
-		trees.add(new Image_2D(-5.7f*UNIT_SIZE,5.7f*UNIT_SIZE,0,rect));
-		trees.add(new Image_2D(-8*UNIT_SIZE,0,0,rect));
-		trees.add(new Image_2D(-5.7f*UNIT_SIZE,-5.7f*UNIT_SIZE,0,rect));
-		trees.add(new Image_2D(0,8*UNIT_SIZE,0,rect));
-		trees.add(new Image_2D(5.7f*UNIT_SIZE,-5.7f*UNIT_SIZE,0,rect));
+		trees.add(new Image_2D(0,0,0,rect,texId));
+		trees.add(new Image_2D(8*UNIT_SIZE,0,0,rect,texId));
+		trees.add(new Image_2D(5.7f*UNIT_SIZE,5.7f*UNIT_SIZE,0,rect,texId));
+		trees.add(new Image_2D(0,-8*UNIT_SIZE,0,rect,texId));
+		trees.add(new Image_2D(-5.7f*UNIT_SIZE,5.7f*UNIT_SIZE,0,rect,texId));
+		trees.add(new Image_2D(-8*UNIT_SIZE,0,0,rect,texId));
+		trees.add(new Image_2D(-5.7f*UNIT_SIZE,-5.7f*UNIT_SIZE,0,rect,texId));
+		trees.add(new Image_2D(0,8*UNIT_SIZE,0,rect,texId));
+		trees.add(new Image_2D(5.7f*UNIT_SIZE,-5.7f*UNIT_SIZE,0,rect,texId));
 	}
 	public void calculateBillboardDirection()
     {
@@ -39,11 +39,11 @@ public class TreeGroup
     	}
     }
     
-    public void drawSelf(int texId)
+    public void drawSelf()
     {//绘制列表中的每个树木
     	for(int i=0;i<trees.size();i++)
     	{
-    		trees.get(i).drawSelf(texId);
+    		trees.get(i).drawSelf();
     	}
     }
 }

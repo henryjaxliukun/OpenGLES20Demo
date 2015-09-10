@@ -17,7 +17,7 @@ import android.opengl.GLSurfaceView;
  * @author Jax
  *
  */
-public class TextureRect implements IGraph 
+public class TextureRect  
 {
 	
 	int mProgram;//自定义渲染管线程序id
