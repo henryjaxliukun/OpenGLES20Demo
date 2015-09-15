@@ -1,8 +1,16 @@
-package com.example.gl2ddemo.graph;
+package com.example.gl2ddemo.graph.two_d;
+
+import static com.example.gl2ddemo.surfaceview.MySurfaceView.SURFACE_BORDER_X;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+
+import com.example.gl2ddemo.util.TextureUtil;
+
+import android.content.Context;
+import android.opengl.GLSurfaceView;
 
 /**
  * 一组云，方便统一调用
@@ -13,8 +21,24 @@ public class CloudGroup {
 
 	List<Cloud> imageList;
 	
-	public CloudGroup(){
+	public CloudGroup(Context ctx,GLSurfaceView sv){
 		imageList=new ArrayList<Cloud>();
+		int[] cloudTextureIds = new int[4];
+		for(int i=0;i<4;i++){
+			int id=ctx.getResources().getIdentifier(ctx.getPackageName()+":drawable/"+"cloud"+(i+1), null, null);
+			cloudTextureIds[i]=TextureUtil.initTexture(id, ctx);
+        }
+		Random random=new Random();
+		TextureRect rect=new TextureRect(sv,60,40,-20);
+		for(int i=0;i<cloudTextureIds.length*2;i++){
+			Cloud c=new Cloud(random.nextInt()%SURFACE_BORDER_X, i-4, rect,cloudTextureIds[i%cloudTextureIds.length]);
+			int s;
+			do{
+				s=Math.abs(random.nextInt()%5+2);
+			}while(s==0);
+			c.setSpeed(s);
+			imageList.add(c);
+		}
 	}
 	
 	public CloudGroup(List<Cloud> list){
@@ -50,7 +74,7 @@ public class CloudGroup {
     	}
     }
     
-    public void drawSelf(int texId)
+    public void drawSelf()
     {//绘制列表中的每个树木
     	for(int i=0;i<imageList.size();i++)
     	{

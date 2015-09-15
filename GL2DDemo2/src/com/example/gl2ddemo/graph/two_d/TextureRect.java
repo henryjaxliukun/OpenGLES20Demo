@@ -1,4 +1,4 @@
-package com.example.gl2ddemo.graph;
+package com.example.gl2ddemo.graph.two_d;
 
 import static com.example.gl2ddemo.surfaceview.MySurfaceView.*;
 
@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import com.example.gl2ddemo.graph.IGraph;
 import com.example.gl2ddemo.util.MatrixState;
 import com.example.gl2ddemo.util.ShaderUtil;
 
@@ -78,9 +79,9 @@ public class TextureRect implements IGraph
     public void initShader(GLSurfaceView mv)
     {
     	//加载顶点着色器的脚本内容
-        String mVertexShader=ShaderUtil.loadFromAssetsFile("vertex.sh", mv.getResources());
+        String mVertexShader=ShaderUtil.loadFromAssetsFile("vertex_2d.sh", mv.getResources());
         //加载片元着色器的脚本内容
-        String mFragmentShader=ShaderUtil.loadFromAssetsFile("frag.sh", mv.getResources());  
+        String mFragmentShader=ShaderUtil.loadFromAssetsFile("frag_2d.sh", mv.getResources());  
         //基于顶点着色器与片元着色器创建程序
         mProgram = ShaderUtil.createProgram(mVertexShader, mFragmentShader);
         //获取程序中顶点位置属性引用id  

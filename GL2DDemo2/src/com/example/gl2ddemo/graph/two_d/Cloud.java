@@ -1,4 +1,7 @@
-package com.example.gl2ddemo.graph;
+package com.example.gl2ddemo.graph.two_d;
+
+import com.example.gl2ddemo.graph.IMovable;
+import static com.example.gl2ddemo.surfaceview.MySurfaceView.*;
 
 public class Cloud extends Image_2D implements IMovable{
 
@@ -10,13 +13,12 @@ public class Cloud extends Image_2D implements IMovable{
 	int moveDirection=1;
 	float speed_unit=0.01f;
 	int speed=1;
-	public static int border=60;
 	
 	@Override
 	public void moveToNextPosition() {
 		// TODO Auto-generated method stub
-		if(x>border){
-			x=-border;
+		if(x>SURFACE_BORDER_X){
+			x=-SURFACE_BORDER_X;
 		}
 		x+=speed_unit*speed*moveDirection;
 	}

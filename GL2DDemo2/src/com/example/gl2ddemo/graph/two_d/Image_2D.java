@@ -1,4 +1,4 @@
-package com.example.gl2ddemo.graph;
+package com.example.gl2ddemo.graph.two_d;
 
 import static com.example.gl2ddemo.surfaceview.MySurfaceView.cx;
 import static com.example.gl2ddemo.surfaceview.MySurfaceView.cz;
@@ -18,8 +18,13 @@ public class Image_2D implements Comparable<Image_2D>{
 		this.z = z;
 		this.yAngle = yAngle;
 		this.rect = rect;
+		setTextureId(texId);
+	}
+	
+	public void setTextureId(int texId){
 		this.texId=texId;
 	}
+	
 
 	public void drawSelf() {
 		MatrixState.pushMatrix();
